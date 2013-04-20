@@ -38,7 +38,7 @@ def countTweets(query):
     """A function to query the search API and count the results."""
     queryEnc = parse.quote(query)
     if(len(queryEnc) > MAXQLENGTH):
-        sys.stderr.write("Query Too Long")
+        print("Query Too Long", file=sys.stderr)
         return EXIT_FAILURE
     url = APIURL + "?q=" + queryEnc + "&rpp=" + str(RCOUNT)
     res = request.urlopen(url)
@@ -65,10 +65,10 @@ while(cnt < threshold):
     time.sleep(TIMEOUT)
     cnt = countTweets(query)
     if(cnt < 0):
-        sys.stderr.write("countTweets returned error\n")
+        print("countTweets returned error\n", file=sys.stderr)
         break;
-    sys.stdout.write("There are " + str(cnt) + " Tweets that match " + query + "\n")
-    sys.stdout.write("Alarm will" + (" not " if (cnt < threshold) else " ") + "sound\n")
+    print("There are " + str(cnt) + " Tweets that match " + query + "\n")
+    print("Alarm will" + (" not " if (cnt < threshold) else " ") + "sound\n")
 
 # Sound alarm if threshold has been reached
 if(cnt >= threshold):
