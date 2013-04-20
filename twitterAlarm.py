@@ -13,6 +13,8 @@ exceeds the provided threshold.
 Note: Has some limits (max count of 100, no auth, etc)
 """
 
+from __future__ import print_function
+
 # Std Library Imports
 import sys
 import argparse
